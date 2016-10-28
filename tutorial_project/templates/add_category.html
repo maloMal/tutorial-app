@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add Category</title>
+</head>
+<body>
+	<h1>Add Category</h1>
+	<form id='category_form' method="post" action='/add-category'>
+		{% csrf_token %}
+		{% for hidden in form.hidden_fields %}
+			{{ hidden }}
+		{% endfor %}
+
+		{% for field in form.visible_fields %}
+			{{field}}
+		{% endfor %}
+		<input type="submit" value="Create a Category"/>
+	</form>
+</body>
+</html>

@@ -15,6 +15,7 @@
 		{% else %}
 			<p>This category has no pages</p>
 		{% endif %}
+		<a href="/category/{{slug}}add_page"> Add a Page</a>
 	{% else %}
 		<p>The Specified Category {{ category.name }} does not exist </p>
 	{% endif %}
