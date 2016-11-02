@@ -1,2 +1,0 @@
-Django==1.7
-Pillow==3.4.1
