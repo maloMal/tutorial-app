@@ -1,9 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>{{ category.name }}</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static files %}
+
+{% block title %}{{ category_name }}{% endblock %}
+
+{% block body_block %}
 	<h1>{{ category.name }}</h1>
 	{% if category %}
 		{% if pages %}
@@ -19,5 +19,4 @@
 	{% else %}
 		<p>The Specified Category {{ category.name }} does not exist </p>
 	{% endif %}
-</body>
-</html>
+{% endblock %}

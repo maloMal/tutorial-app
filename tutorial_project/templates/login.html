@@ -1,9 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Login</title>
-</head>
-<body>
+{% extend 'base.html' %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block body_block %}
 	<h1>Login to Tutorial App</h1>
 	<form id="login_form" method='post' action='/login/'>
 		{% csrf_token %}
@@ -13,5 +13,6 @@
 		<input type='submit' value='login'/>
 	</form>
 
-</body>
-</html>
+
+
+{% endblock %}
