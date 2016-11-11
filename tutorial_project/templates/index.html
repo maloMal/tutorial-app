@@ -2,24 +2,49 @@
 {% load static %}	
 
 {% block body_block %}
+<div class="page-header">
+	{% if user.is_authenticated %}
+	<h1>THIS IS A PAGE ABOUT MONKEYS {{ user.username }}</h1>
+	{% else %}
+	<h1>BANANA PRIDE</h1>
+	{% endif %}
+</div>
 
-	<h1>THIS IS A PAGE ABOUT MONKEYS</h1>
-	
+<div class="row placeholders">
+<div class="col-xs-12 col-md-6 placeholder">
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title">Categories</h3>
+	</div>
+</div>
 	{% if categories %}
+	<ul class="list-group">
 		{% for category in categories %}
-			<a href="{% url 'category' category.slug %}"><p>{{ category.name }}</p></a>
+			<li class="list-group-item"><a href="{% url 'category' category.slug %}"><p>{{ category.name }}</p></a></li>
 		{% endfor %}
+		</ul>
 	{% else %}
 		<p>There are no categories!</p>
 	{% endif %}
-
+</div>
+<div class="col-xs-12 col-md-6 placeholder">
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title">Pages</h3>
+	</div>
+</div>
 	{% if pages %}
-		<h1> Top 5 pages</h1>
+	<ul class="list-group">
 		{% for page in pages %}
-			<a href="{{page.url}}">{{page.title}}</a>
+		<li class="list-group-item"><a href="{{page.url}}">{{page.title}}</a></li>
 		{% endfor %}
-	{% endif %}
+		</ul>
+		{% else %}
+		<strong>There are no categories present!</strong>
+		{% endif %}
+</div>
+</div>
 
 
-	<img src="{% static 'images/monkey_with_gun.jpg'%}">
+	<!---<img src="{% static 'images/monkey_with_gun.jpg'%}">-->
 {% endblock %}

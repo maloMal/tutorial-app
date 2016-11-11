@@ -5,8 +5,9 @@
 
 {% block body_block %}
 
-	<h1>Add Category</h1>
-	<form id='category_form' method="post" action='/add-category'>
+	<h1 class="form-sigin-heading">Add a new Category</h1>
+	<form class="form-signin" id='category_form' method="post" action='/add-category'>
+		<h3 class="form-sigin-heading">Add a new category.</h3>
 		{% csrf_token %}
 		{% for hidden in form.hidden_fields %}
 			{{ hidden }}
@@ -15,6 +16,6 @@
 		{% for field in form.visible_fields %}
 			{{field}}
 		{% endfor %}
-		<input type="submit" value="Create a Category"/>
+		<button class="btn btn-lg btn-primary btn-block" type="submit" value="Submit">Add Category</button>
 	</form>
 {% endblock %}
