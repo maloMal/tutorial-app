@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load extras %}
 {% block title %}Add category {% endblock %}
 
 {% block body_block %}
@@ -14,7 +14,11 @@
 		{% endfor %}
 
 		{% for field in form.visible_fields %}
-			{{field}}
+		<div class='form-group'>
+			{{ field.errors }}
+			{{ field.help_text }}
+			{{ field |addcls:'form-control'}}
+		</div>
 		{% endfor %}
 		<button class="btn btn-lg btn-primary btn-block" type="submit" value="Submit">Add Category</button>
 	</form>

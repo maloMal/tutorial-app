@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load extras %}
 {% block title %}Register{% endblock %}
 
 {% block body_block %}
@@ -14,8 +14,20 @@
 	<form id='user_form' method='post' action='/register/' enctype='multipart/form-data'>
 		
 		{% csrf_token %}
-		{{ user_form.as_p }}
-		{{ profile_form.as_p }}
+		{% for field in user_form.visible_fields %}
+		<div class='form-group'>
+			{{field.errors}}<br>
+			{{field.help_text}}<br>
+			{{field |addcls:'form-control'}}
+		</div>
+		{% endfor %}
+		{% for field in profile_form.visible_fields %}
+		<div class='form-group'>
+			{{field.errors}}<br> 
+			{{field.help_text}}<br>
+			{{field |addcls:'form-control'}}
+		</div>
+		{% endfor %}
 		<input type='submit' name='submit' value='Register'>
 	</form>
 	{% endif %}
