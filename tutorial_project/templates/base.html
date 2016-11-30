@@ -31,6 +31,7 @@
 					<li><a href="{url 'about' %}">About Us</a></li>
 					{% if user.is_authenticated %}
 					<li><a href="{url 'add-category' %}">Add Category</a></li>
+					<li><a href="{% url 'add-category' %}">Add Category</a></li>
 					<li><a href="{url 'logout' %}">Bye!</a></li>
 					{% else %}
 					<li><a href="{url 'login' %}">Who Are You?</a></li>
