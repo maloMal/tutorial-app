@@ -1,6 +1,7 @@
 from django import forms
 from models import Page, Category, UserProfile
 from django.contrib.auth.models import User
+from django.core.mail import EmailMessage
 
 
 class UserForm(forms.ModelForm):
@@ -42,3 +43,30 @@ class PageForm(forms.ModelForm):
 	class Meta:
 		model = Page
 		exclude = ('category', 'user')
+
+class ContactForm(forms.Form):
+	name = forms.CharField(required=True)
+	email = forms.CharField(widget=forms.EmailInput(), required=True)
+	subject = forms.CharField(required=True)
+	body = forms.CharField(widget=forms.Textarea(), required=True)
+
+	def send_message(self):
+		name = self.cleaned_data['name']
+		email = self.cleaned_data['email']
+		subject = self.cleaned_data['subject']
+		body = self.cleaned_data['body']
+
+		message = '''
+		New Message from {name} @ {email}
+		Subject: {Subject}
+		Message: 
+		{body}
+		'''.format(name=name,
+			email=email,
+			subject=subject,
+			body=body)
+		email_msg = EmailMessage('New Contact Form Submission',
+			message,
+			email,
+			['mbrunson84@gmail.com'])
+		email_msg.send()
