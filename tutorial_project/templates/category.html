@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block title %}{{category.name}}{% endblock %}
+
 {% block body_block %}
 <div class="page-header">
 	<h1>{{ category.name }}</h1>
@@ -47,6 +48,9 @@ Like
 		<div class="list-group-item">
 		<h4 class="list-group-item-heading"><a href="{{result.link}}">{{result.title}}</a></h4>
 		<p class="list-group-item-text">{{result.summary}}</p>
+		{% if user.is_authenticated %}
+			<button data-catid="{{category.id}}" data-title="{{ result.title}}" data-url="{{ result.link }}" data-user="{{user.username}}" class="cat-add btn btn-mini btn-info" type="button">Add</button>
+		{% endif %}
 		</div>
 		{% endfor %}
 		</div>

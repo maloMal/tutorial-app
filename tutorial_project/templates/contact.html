@@ -5,7 +5,7 @@
 <h1 class="form-signin-heading">Contact Us</h1>
 	<form class="form-signin" id="page_form" method='post' action='/categories/{{slug}}/add-page'>
 
-		{% csrf_token $}
+		{% csrf_token %}
 		{% for hidden in form.hidden_fields %}
 			{{ hidden }}
 		{% endfor %}

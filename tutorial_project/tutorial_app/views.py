@@ -9,6 +9,7 @@ from django.contrib.auth import logout
 from datetime import datetime
 from django.shortcuts import redirect, get_object_or_404
 from search import run_query
+from suggest import get_category_list
 
 def index(request):
 	category_list = Category.objects.order_by('-likes')
@@ -214,7 +215,7 @@ def contact(request):
 
 	return render(request, 'contact.html', {'form':form})
 
-def like_category(request)
+def like_category(request):
 	cat_id = None
 	if request.method == "GET":
 		cat_id = request.get['cat_id']
@@ -228,3 +229,38 @@ def like_category(request)
 			cat.likes = likes
 			cat.save()
 	return HttpResponse(likes)
+
+def suggest_category(request):
+	cat_list = []
+	starts_with = ''
+
+	if request.method == 'GET':
+		starts_with = request.GET('suggestion')
+
+		cat_list = get_category_list(0, starts_with)
+		return render(request, 'cat.html', {'cats':cat_list})
+
+@login_required
+def auto_add_page(request):
+	cat_id = None
+	url = None
+	title = None
+	user = None
+	context_dict = {}
+
+	if request.method == 'GET':
+		cat_id = request.GET('category_id')
+		url = request.GET('url')
+		title = request.GET('title')
+		user - request.GET('user')
+
+		if cat_id and user: 
+			category = Category.objects.get(id=int(cat_id))
+			user = User.objects.get(username=user)
+			p = Page.objects.get_or_create(category=category, user=user, title=title, url=url)
+		pages = Page.objects.filter(category=category).order_by('-views')
+		context_dict['pages'] = pages
+		return render(request, 'page_list.html', context_dict)
+
+
+
