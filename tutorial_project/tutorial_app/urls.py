@@ -17,4 +17,6 @@ urlpatterns = patterns('',
 	url(r'^contact/', views.contact, name='contact'),
 	url(r'^like_category/$', views.like_category, name='like_category'),
 	url(r'^suggest_category/$', views.suggest_category, name='suggest_category'),
+	url(r'^settings/$', views.SettingsView.as_view(), name='settings'),
+	url(r'^recover-password/$', views.PasswordRecoveryView.as_view(), name='recover-password'),
 	)

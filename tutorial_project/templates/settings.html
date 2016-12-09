@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load extras %}
+{% block title %}Change Password{% endpage %}
+{% block body_block %}
+<h1 class="form-signin-heading">Change Password</h1>
+	<form class="form-signin" id="page_form" method='post' action='/categories/{{slug}}/add-page'>
+
+		{% csrf_token $}
+		{% for hidden in form.hidden_fields %}
+			{{ hidden }}
+		{% endfor %}
+
+		{% for field in form.visible_fields %}
+		<div class="form-group">
+			{{ field.errors }}
+			{{ field.help_text }}
+			{{ field.label }}
+			{{ field|addcls:'form-control'}}
+		</div>
+		{% endfor %}
+
+		<button class="btn btn-primary" type="submit" name="submit">Add a page</button>
+	</form>
+</body>
+</html>
+{% endblock %}

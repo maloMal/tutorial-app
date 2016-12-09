@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% block title %}Login{% endblock %} 
 {% block body_block %}
 	<h2 class="form-signin-heading">Login</h2>
 	<form class="form-signin" id="login_form" method="post" action="/login/">
@@ -10,4 +10,5 @@
 	<input type="password" class="form-control" placeholder="Password" name="password" value="" size="50" required /><br />
 	<button class="btn btn-lg btn-primary btn-block" type="submit" value="submit" >Sign in</button>
 	</form>
+	<a href="{% url 'recover-password' %}">Forget your password? Click Here.</a>
 {% endblock %}
