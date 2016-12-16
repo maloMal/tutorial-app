@@ -277,7 +277,7 @@ class SettingsView(LoginRequiredMixin, FormView):
 		return form_class(user=self.request.user, **self.get_form_kwargs())
 	def form_valid(self, form):
 		form.save()
-		update_session_auth_hash(self.request, form):
+		update_session_auth_hash(self.request, form)
 		return super(SettingsView, self).form_valid(form)
 
 class PasswordRecoveryView(FormView):

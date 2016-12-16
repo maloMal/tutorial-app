@@ -21,6 +21,9 @@ class Category(models.Model):
 	def save(self, *args, **kwargs):
 		self.slug = slugify(self.name)
 
+		if self.likes < 0:
+			self.likes = 0
+
 		super(Category, self).save(*args, **kwargs)
 
 	def __unicode__(self):
